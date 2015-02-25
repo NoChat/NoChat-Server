@@ -16,4 +16,13 @@ public class ChatType extends Model {
     public String name;
 
     public boolean isVisible;
+
+    public static Finder<Long,ChatType> find = new Finder<Long,ChatType>(
+            Long.class, ChatType.class
+    );
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

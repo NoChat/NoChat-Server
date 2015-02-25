@@ -47,7 +47,7 @@ public class User extends Model {
     // 09d26515ee7ea107cc7427fc2ceacc231423c708d87af97c98473f5abf9917db
     public String locale;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     public OS os;
 
     @Pattern(value = "^" + PHONE_NUMBER_PATTERN + "$", message = "user.wrongPhoneNumber.alert")

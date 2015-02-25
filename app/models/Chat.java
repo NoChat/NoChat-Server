@@ -22,20 +22,20 @@ public class Chat extends Model {
     @Id
     public Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name = "send_user_id")
     public User sendUser;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name = "received_user_id")
     public User receivedUser;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public ChatType chatType;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     public ChatState state;
 
     @Formats.DateTime(pattern = "YYYY/MM/DD/hh/mm/ss")

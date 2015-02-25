@@ -8,9 +8,9 @@ create table chat (
   send_user_id              bigint,
   received_user_id          bigint,
   chat_type_id              bigint,
-  state                     varchar(8),
+  state                     integer,
   created                   datetime,
-  constraint ck_chat_state check (state in ('SENDING','RECEIVED','ACCEPT','REJECT')),
+  constraint ck_chat_state check (state in (0,1,2,3)),
   constraint pk_chat primary key (id))
 ;
 
@@ -33,6 +33,7 @@ create table user (
   phone_number              varchar(255),
   phone_number_token        varchar(255),
   updated_at                datetime,
+  constraint ck_user_os check (os in (0,1,2,3)),
   constraint uq_user_1 unique (login_id),
   constraint pk_user primary key (id))
 ;

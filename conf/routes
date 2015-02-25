@@ -16,5 +16,6 @@ POST    /users/phone/auth           controllers.Users.authPhone()
 
 # Chats
 GET     /chats/$id<[0-9]+>          controllers.Chats.show(id: Long)
-GET     /chats/new                  controllers.Chats.create()
+GET     /chats/type/all                controllers.Chats.showTypes()
 POST    /chats/new                  controllers.Chats.create()
+POST    /chats/:chat/:reply       controllers.Chats.reply(chat, reply)
