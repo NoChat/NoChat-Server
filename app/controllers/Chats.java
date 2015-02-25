@@ -4,6 +4,7 @@ package controllers;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
+import controllers.secured.PhoneSecured;
 import models.Chat;
 import models.User;
 import models.enumeration.ChatState;
@@ -24,10 +25,9 @@ public class Chats extends Controller {
         }
         response().setContentType("application/json; charset=utf-8");
         Chat chat = Chat.find.byId(id);
-        Logger.debug(chat+"");
         return ok("chats : " + id);
     }
-    @Security.Authenticated(Secured.class)
+    @Security.Authenticated(PhoneSecured.class)
     public static Result create(){
         //Form<Chat> chatForm = new Form<>(Chat.class).bindFromRequest();
         User user = Users.currentUser();
@@ -39,15 +39,6 @@ public class Chats extends Controller {
         chat.save();
 
 
-        ApnsService service =
-                APNS.newService()
-                        .withCert("certs/dev/nochat_push.p12", "nochat")
-                        .withSandboxDestination()
-                        .build();
-
-        String payload = APNS.newPayload().alertBody("Can't be simpler than this!").build();
-        String token = user.deviceToken;
-        service.push(token, payload);
 
         ObjectNode result = Json.newObject();
         result.put("code", "0");

@@ -1,0 +1,16 @@
+# 10000
+user.wrongToken.alert = 올바른 유저 접근이 아닙니다!
+user.nonePhoneNumber.alert = 유저 전화번호 인증을 하지 않았습니다!
+user.wrongloginId.alert = 올바른 아이디를 입력해주세요!
+user.wrongPassword.alert = 잘못된 패스워드 입니다!
+user.loginId.duplicate = 이미 해당 아이디가 있습니다!
+user.phoneNumber.duplicate = 이미 전화번호를 사용중입니다!
+user.wrongPhoneNumber.alert = 올바른 전화번호를 입력해주세요!
+user.wrongPhoneNumberToken.alert = 전화번호 인증코드가 잘못되었습니다!
+# 11000
+user.phoneNumberAuthFail.alert = 전화번호 인증에 실패했습니다!
+# 12000
+user.loginFail.alert = 로그인에 실패했습니다!
+user.phoneNumberNotYet.alert = 전화번호 인증을 진행해 주세요
+# 9000x
+common.wrongParameter.alert = 올바르지 않은 파라메터 입니다!

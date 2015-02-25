@@ -23,14 +23,17 @@ create table chat_type (
 
 create table user (
   id                        bigint auto_increment not null,
+  login_id                  varchar(255),
+  password                  varchar(255),
+  password_salt             varchar(255),
   api_token                 varchar(255),
   device_token              varchar(255),
   locale                    varchar(255),
   os                        integer,
   phone_number              varchar(255),
-  email                     varchar(255),
+  phone_number_token        varchar(255),
   updated_at                datetime,
-  constraint uq_user_1 unique (phone_number),
+  constraint uq_user_1 unique (login_id),
   constraint pk_user primary key (id))
 ;
 
