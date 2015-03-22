@@ -1,5 +1,6 @@
 ## Nochat
 
 - production
-	- activator clean compile stage -Dconfig.file=./conf/application_prod.conf
+	-  activator stage -Dconfig.file=./conf/application_prod.conf -Dbackground=true
+    -   nohup target/universal/stage/bin/nochat &
 
