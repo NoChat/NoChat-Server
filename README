@@ -1,4 +1,4 @@
 ## Nochat
 
 - production
-	- -Dconfig.resource=application_prod.conf 옵션
+	- activator stage -Dconfig.file=./conf/application_prod.conf
