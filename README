@@ -1,4 +1,5 @@
 ## Nochat
 
 - production
-	- activator stage -Dconfig.file=./conf/application_prod.conf
+	- activator clean compile stage -Dconfig.file=./conf/application_prod.conf
+
