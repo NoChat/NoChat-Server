@@ -210,5 +210,16 @@ public class Users extends BaseController {
 
         return renderOk(Json.toJson(user));
     }
-
+		@Transactional
+    @Security.Authenticated(ApiTokenSecured.class)
+    public static Result getFriends(){
+			User user = Users.currentUser();
+			final Map<String, String[]> values = request().body().asFormUrlEncoded();
+			if(values.get("phoneNumbers") == null){
+				return renderFail("90000",Messages.get("common.wrongParameter.alert"));
+			}
+			String friendsPhoneNums = values.get("phoneNumbers")[0];
+			List<User> friends = User.getFriends(friendsPhoneNums);
+			return renderOk(Json.toJson(friends));
+    }
 }

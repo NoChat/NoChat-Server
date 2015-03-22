@@ -6,6 +6,10 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
 scalaVersion := "2.11.1"
 
+resolvers += "Maven Central" at "http://repo1.maven.org/maven2/"
+
+resolvers += "mvnrepository" at "http://mvnrepository.com/artifact/"
+
 libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,

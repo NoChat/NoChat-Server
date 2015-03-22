@@ -1,4 +1,4 @@
-This is your new Play application
-=================================
+## Nochat
 
-This file will be packaged with your application, when using `activator dist`.
+- production
+	- -Dconfig.resource=application_prod.conf 옵션

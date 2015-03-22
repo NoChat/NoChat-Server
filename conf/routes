@@ -3,19 +3,20 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /test                       controllers.Application.test()
+GET         /                          controllers.Application.index()
+GET         /test                      controllers.Application.test()
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file              controllers.Assets.at(path="/public", file)
 
 # Users
-POST    /users/signup               controllers.Users.newUser()
-POST    /users/signin               controllers.Users.signIn()
-POST    /users/phone/token          controllers.Users.sendPhoneNumberToken()
-POST    /users/phone/auth           controllers.Users.authPhone()
-
+POST        /users/signup              controllers.Users.newUser()
+POST        /users/signin              controllers.Users.signIn()
+POST        /users/phone/token         controllers.Users.sendPhoneNumberToken()
+POST        /users/phone/auth          controllers.Users.authPhone()
+POST        /users/friend              controllers.Users.getFriends()
+GET         /users/friend              controllers.Users.getFriends()
 # Chats
-GET     /chats/$id<[0-9]+>          controllers.Chats.show(id: Long)
-GET     /chats/type/all                controllers.Chats.showTypes()
-POST    /chats/new                  controllers.Chats.create()
-POST    /chats/:chat/:reply       controllers.Chats.reply(chat, reply)
+GET         /chats/$id<[0-9]+>         controllers.Chats.show(id: Long)
+GET         /chats/type/all            controllers.Chats.showTypes()
+POST        /chats/new                 controllers.Chats.create()
+POST        /chats/:chat/:reply        controllers.Chats.reply(chat, reply)
