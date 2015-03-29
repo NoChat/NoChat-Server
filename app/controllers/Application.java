@@ -7,15 +7,16 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import play.mvc.With;
+import views.html.index;
 
 public class Application extends Controller {
 
     public static Result index() {
-        return movedPermanently("/test"); // 301 move permanently
+        //return movedPermanently("/test"); // 301 move permanently
         //return redirect("/test"); // 303 SEE OTHER REDIRECT
         //return temporaryRedirect("/test"); // 371 temporary redirect
         //return ok("Got request " + request() + "!");
-        //return ok(index.render("Your new application is ready."));
+        return ok(index.render("Your new application is ready."));
     }
     @With(VerboseAction.class)
     //@Security.Authenticated

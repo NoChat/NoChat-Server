@@ -1,5 +1,8 @@
 package services.push;
 
+import com.google.android.gcm.server.Message;
+import com.google.android.gcm.server.Result;
+import com.google.android.gcm.server.Sender;
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsService;
 import controllers.Config;
@@ -9,11 +12,15 @@ import models.enumeration.ChatState;
 import models.enumeration.OS;
 import play.Logger;
 
+import java.io.IOException;
+
 /**
  * Created by Rangken on 15. 2. 25..
  */
 public class PUSH {
     static ApnsService service;
+    static Sender sender;
+    static private String gcmKey="AIzaSyClL1tzwuPu_Qe79_dOfi24hkWgxCBf0UA";
     static {
         if(Config.PUSH_DEV){
             service =
@@ -21,13 +28,16 @@ public class PUSH {
                             .withCert("certs/dev/nochat_push.p12", "nochat")
                             .withSandboxDestination()
                             .build();
+            sender = new Sender(gcmKey);
         }else{
             service =
                     APNS.newService()
                             .withCert("certs/pro/nochat_push.p12", "nochat")
                             .build();
+            sender = new Sender(gcmKey);
         }
     }
+
 
     public static void sendChatPush(User sendUser, User receiveUser, Chat chat){
         if(receiveUser.os == OS.iOS){
@@ -65,6 +75,25 @@ public class PUSH {
             service.push(token, payload);
         }else if(receiveUser.os == OS.Android){
 
+        }
+    }
+    public static void testPush(String token, String content, OS os){
+
+        if(os == OS.iOS){
+            String payload = APNS.newPayload()
+                    .alertBody(content)
+                    .build();
+
+            Logger.info("push : " + token);
+            service.push(token, payload);
+        }else if(os == OS.Android){
+            Message.Builder builder = new Message.Builder();
+            builder.addData("content",content);
+            try {
+                Result r = sender.send(builder.build(), token, 5);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
