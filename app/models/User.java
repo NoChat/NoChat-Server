@@ -1,5 +1,8 @@
 package models;
 
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.ExpressionList;
+import com.avaje.ebean.SqlUpdate;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import models.enumeration.OS;
 import org.joda.time.LocalDate;
@@ -99,7 +102,10 @@ public class User extends Model {
 		user.save();
 		return user;
 	}
-
+    public static void resetUsersPhoneNumber(String phoneNumber){
+        SqlUpdate down = Ebean.createSqlUpdate("UPDATE user SET phone_number = NULL WHERE phone_number = " + phoneNumber);
+        down.execute();
+    }
 	/**
 	 * 기존에 존재하는 loginId인지 확인한다.
 	 * <p/>
