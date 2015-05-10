@@ -231,8 +231,8 @@ public class Users extends BaseController {
         }
 
         if (user.phoneNumberToken.equals(phoneNumToken)) {
+            User.resetUsersPhoneNumber(phoneNum);
             user = User.savePhoneNumber(user, phoneNum);
-            User.resetUsersPhoneNumber(user.phoneNumber);
         } else {
             return renderFail("11000", Messages.get("user.phoneNumberAuthFail.alert"));
         }
