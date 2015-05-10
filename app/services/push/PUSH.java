@@ -50,7 +50,17 @@ public class PUSH {
             String token = receiveUser.deviceToken;
             service.push(token, payload);
         }else if(receiveUser.os == OS.Android){
+            Message.Builder builder = new Message.Builder();
+            builder.addData("pushType", "0");
+            builder.addData("userId", sendUser.id + "");
+            builder.addData("chatId", chat.id + "");
 
+            builder.addData("msg",chat.chatType.name+" ㄱㄱ?");
+            try {
+                Result r = sender.send(builder.build(), receiveUser.deviceToken, 5);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -74,7 +84,17 @@ public class PUSH {
             Logger.info("push : " + token);
             service.push(token, payload);
         }else if(receiveUser.os == OS.Android){
+            Message.Builder builder = new Message.Builder();
+            builder.addData("pushType", "1");
+            builder.addData("userId", sendUser.id + "");
+            builder.addData("chatId", chat.id + "");
 
+            builder.addData("msg",message.toString());
+            try {
+                Result r = sender.send(builder.build(), receiveUser.deviceToken, 5);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     public static void testPush(String token, String content, OS os){
