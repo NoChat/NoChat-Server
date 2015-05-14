@@ -44,6 +44,7 @@ public class PUSH {
             String payload = APNS.newPayload()
                     .customField("pushType", "0")
                     .customField("userId", sendUser.id + "") // 푸시 보내는 사용자 아이디
+                    .customField("userLoginId", sendUser.loginId) // 푸시 보내는 사용자 아이디
                     .customField("chatId", chat.id + "") // 보내는 챗 아이디
                     .alertBody(chat.chatType.name+" ㄱㄱ?")
                     .build();
@@ -53,6 +54,7 @@ public class PUSH {
             Message.Builder builder = new Message.Builder();
             builder.addData("pushType", "0");
             builder.addData("userId", sendUser.id + "");
+            builder.addData("userLoginId", sendUser.loginId + "");
             builder.addData("chatId", chat.id + "");
 
             builder.addData("msg",chat.chatType.name+" ㄱㄱ?");
@@ -76,6 +78,7 @@ public class PUSH {
             String payload = APNS.newPayload()
                     .customField("pushType", "1")
                     .customField("userId", sendUser.id + "") // 푸시 보내는 사용자 아이디
+                    .customField("userLoginId", sendUser.loginId) // 푸시 보내는 사용자 아이디
                     .customField("chatId", chat.id + "") // 보내는 챗 아이디
                     .alertBody(message.toString())
                     .build();
@@ -87,6 +90,7 @@ public class PUSH {
             Message.Builder builder = new Message.Builder();
             builder.addData("pushType", "1");
             builder.addData("userId", sendUser.id + "");
+            builder.addData("userLoginId", sendUser.loginId);
             builder.addData("chatId", chat.id + "");
 
             builder.addData("msg",message.toString());
