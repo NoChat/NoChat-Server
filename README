@@ -2,5 +2,6 @@
 
 - production
 	-  activator stage -Dconfig.file=./conf/application_prod.conf -Dbackground=true
+	-  activator stage -Dbackground=true
     -   nohup target/universal/stage/bin/nochat &
 

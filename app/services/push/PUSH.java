@@ -46,7 +46,9 @@ public class PUSH {
                     .customField("userId", sendUser.id + "") // 푸시 보내는 사용자 아이디
                     .customField("userLoginId", sendUser.loginId) // 푸시 보내는 사용자 아이디
                     .customField("chatId", chat.id + "") // 보내는 챗 아이디
-                    .alertBody(chat.chatType.name+" ㄱㄱ?")
+                    .customField("chatType", chat.chatType.id + "") // 보내는 챗 아이디
+                    .customField("chatId", chat.id + "")
+                    .alertBody(chat.chatType.name + " ㄱㄱ?")
                     .build();
             String token = receiveUser.deviceToken;
             service.push(token, payload);
@@ -55,6 +57,7 @@ public class PUSH {
             builder.addData("pushType", "0");
             builder.addData("userId", sendUser.id + "");
             builder.addData("userLoginId", sendUser.loginId + "");
+            builder.addData("chatType", chat.chatType.id + "");
             builder.addData("chatId", chat.id + "");
 
             builder.addData("msg",chat.chatType.name+" ㄱㄱ?");
@@ -91,8 +94,8 @@ public class PUSH {
             builder.addData("pushType", "1");
             builder.addData("userId", sendUser.id + "");
             builder.addData("userLoginId", sendUser.loginId);
+            builder.addData("chatType", chat.chatType.id + "");
             builder.addData("chatId", chat.id + "");
-
             builder.addData("msg",message.toString());
             try {
                 Result r = sender.send(builder.build(), receiveUser.deviceToken, 5);
